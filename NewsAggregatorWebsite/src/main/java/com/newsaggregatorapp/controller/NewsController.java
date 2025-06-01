@@ -26,7 +26,7 @@ public class NewsController {
     @Autowired
     private NewsRepository newsRepository;
 
-    // ✅ Get news based on user preferences
+    //  Get news based on user preferences
     @GetMapping
     public ResponseEntity<List<News>> getNews(@RequestParam Long userId) {
         Optional<User> userOpt = userRepository.findById(userId);
@@ -45,13 +45,13 @@ public class NewsController {
         return ResponseEntity.ok(newsList);
     }
 
-    // ✅ Post news manually
+    //  Post news manually
     @PostMapping
     public News postNews(@RequestBody News news) {
         return newsService.saveNews(news);
     }
 
-    // ✅ Filter news by category
+    //  Filter news by category
     @GetMapping("/category")
     public ResponseEntity<List<News>> getNewsByCategory(@RequestParam Long userId, @RequestParam String category) {
         Optional<User> userOpt = userRepository.findById(userId);
