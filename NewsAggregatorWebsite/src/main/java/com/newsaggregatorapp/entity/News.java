@@ -71,7 +71,7 @@ public class News {
 		this.publishedAt = date;
 	}
 
-    // Getters and Setters
+    
     
     
 }
