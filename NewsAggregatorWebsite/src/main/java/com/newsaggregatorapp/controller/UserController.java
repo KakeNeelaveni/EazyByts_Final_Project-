@@ -23,11 +23,11 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
-        String normalizedUsername = user.getUsername().trim().toLowerCase(); // 👈 Normalize username
+        String normalizedUsername = user.getUsername().trim().toLowerCase(); //  Normalize username
         if (userRepository.existsByUsername(normalizedUsername)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
         }
-        user.setUsername(normalizedUsername); // 👈 Set normalized username
+        user.setUsername(normalizedUsername); //  Set normalized username
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return ResponseEntity.ok("User registered successfully");
@@ -35,7 +35,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        String normalizedUsername = user.getUsername().trim().toLowerCase(); // 👈 Normalize username
+        String normalizedUsername = user.getUsername().trim().toLowerCase(); //  Normalize username
         Optional<User> optionalUser = userRepository.findByUsername(normalizedUsername);
 
         if (optionalUser.isPresent()) {
